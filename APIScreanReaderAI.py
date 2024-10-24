@@ -1,8 +1,14 @@
 from fastapi import FastAPI
 from transformers import GPT2LMHeadModel, GPT2TokenizerFast
+import os
+from huggingface_hub import login
 
 # Initialize FastAPI app
 app = FastAPI()
+
+# Get Hugging Face token from environment variables
+huggingface_token = os.getenv("HUGGINGFACE_TOKEN")
+login(token=huggingface_token)
 
 # Load your trained model and tokenizer
 model_path = "./trained_jaws_model"  # Update with the path where your model is saved
